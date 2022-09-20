@@ -9,7 +9,7 @@ public class ConnectionUtil {
 
         try {
 
-            Connection conn = DriverManager.getConnection(System.getenv(""));
+            Connection conn = DriverManager.getConnection(System.getenv("DWBI_TECHCHAT"));
 
             return conn;
 

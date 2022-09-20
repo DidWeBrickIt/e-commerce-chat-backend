@@ -8,9 +8,9 @@ public interface MessageDao {
 
     int createMessageTable(String username);
 
-    int postMessage(String message);
+    int postMessage(String username, Message message);
 
-    List<Message> getAllMessages ();
+    List<Message> getAllMessages (String username);
 
-    void deleteAllMessages();
+    void deleteAllMessages(String username);
 }
