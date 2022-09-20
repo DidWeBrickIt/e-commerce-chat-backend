@@ -16,9 +16,8 @@ public class MessageDaoPostgres implements MessageDao{
     public int createMessageTable(String username) {
         try (Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "create table ? (message_id int primary key, message varchar not null)";
+            String sql = "create table " + username + " (message_id int primary key, message varchar not null)";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
 
             ps.execute();
             conn.close();
@@ -34,12 +33,11 @@ public class MessageDaoPostgres implements MessageDao{
     @Override
     public int postMessage(String username, Message message) {
         try( Connection conn = ConnectionUtil.getConnection()){
-            String sql = "insert into ? values (?, ?)";
+            String sql = "insert into " + username + " values (?, ?)";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setInt(2, message.getMsgId());
-            ps.setString(3, message.getMessage());
+            ps.setInt(1, message.getMsgId());
+            ps.setString(2, message.getMessage());
 
             ps.execute();
             conn.close();
@@ -53,16 +51,14 @@ public class MessageDaoPostgres implements MessageDao{
     }
 
     @Override
-    public List<Message> getAllMessages(String username) {
+    public List<Message> getMessagesByUsername(String username) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select * from ?";
+            String sql = "select * from " + username;
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
-            ps.execute();
 
             List<Message> messageList = new ArrayList<Message>();
 
@@ -73,6 +69,7 @@ public class MessageDaoPostgres implements MessageDao{
                 messageList.add(message);
             }
             conn.close();
+            return messageList;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,12 +78,13 @@ public class MessageDaoPostgres implements MessageDao{
     }
 
     @Override
-    public void deleteAllMessages(String username) {
+    public void deleteMessagesByUsername(String username) {
+        System.out.println(username);
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "drop table ?";
+            String sql = "drop table " + username;
+            System.out.println(sql);
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
             ps.execute();
 
             conn.close();

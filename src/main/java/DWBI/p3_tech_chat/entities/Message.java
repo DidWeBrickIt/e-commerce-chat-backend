@@ -8,6 +8,10 @@ public class Message {
     public Message() {
     }
 
+    public Message(String message) {
+        this.message = message;
+    }
+
     public Message(int msgId, String message) {
         this.msgId = msgId;
         this.message = message;
@@ -27,5 +31,13 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "msgId=" + msgId +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

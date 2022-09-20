@@ -10,7 +10,7 @@ public interface MessageDao {
 
     int postMessage(String username, Message message);
 
-    List<Message> getAllMessages (String username);
+    List<Message> getMessagesByUsername(String username);
 
-    void deleteAllMessages(String username);
+    void deleteMessagesByUsername(String username);
 }
