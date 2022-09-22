@@ -16,7 +16,7 @@ public class MessageDaoPostgres implements MessageDao{
     public int createMessageTable(String username) {
         try (Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "create table " + username + " (message_id int primary key, message varchar not null)";
+            String sql = "create table " + username + " (message_id int primary key, username varchar not null, message varchar not null)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.execute();
@@ -33,11 +33,12 @@ public class MessageDaoPostgres implements MessageDao{
     @Override
     public int postMessage(String username, Message message) {
         try( Connection conn = ConnectionUtil.getConnection()){
-            String sql = "insert into " + username + " values (?, ?)";
+            String sql = "insert into " + username + " values (?, ?, ?)";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, message.getMsgId());
-            ps.setString(2, message.getMessage());
+            ps.setString(2, message.getUsername());
+            ps.setString(3, message.getMessage());
 
             ps.execute();
             conn.close();
@@ -65,6 +66,7 @@ public class MessageDaoPostgres implements MessageDao{
             while(rs.next()) {
                 Message message = new Message();
                 message.setMsgId(rs.getInt("message_id"));
+                message.setUsername(rs.getString("username"));
                 message.setMessage(rs.getString("message"));
                 messageList.add(message);
             }

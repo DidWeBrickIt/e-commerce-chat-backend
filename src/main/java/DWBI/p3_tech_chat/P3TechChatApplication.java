@@ -26,8 +26,8 @@ public class P3TechChatApplication {
 		//call controllers
 		app.delete("/{username}",deleteMessagesByUsernameController);
 		app.post("/{username}", createTableController);
-		app.get("/{username}", getMessagesByUsernameController);
-		app.post("/1/{username}", postMessageController);
+		app.get("/{username}/retrieve", getMessagesByUsernameController);
+		app.post("/{username}/post", postMessageController);
 
 
 		app.start();

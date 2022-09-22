@@ -2,6 +2,7 @@ package DWBI.p3_tech_chat.controllers;
 
 import DWBI.p3_tech_chat.P3TechChatApplication;
 import DWBI.p3_tech_chat.entities.Message;
+import DWBI.p3_tech_chat.entities.list;
 import com.google.gson.Gson;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -17,7 +18,7 @@ public class GetMessagesByUsernameController implements Handler {
         String json = gson.toJson(P3TechChatApplication.messageService.getMessageByUsername(username));
 
         if (json.length() > 2) {
-            ctx.status(302);
+            ctx.status(200);
             ctx.result(json);
         } else {
             ctx.status(404);
