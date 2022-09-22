@@ -30,7 +30,7 @@ public class P3TechChatApplication {
 		app.post("/{username}/post", postMessageController);
 
 
-		app.start(4040);
+		app.start();
 	}
 
 }
