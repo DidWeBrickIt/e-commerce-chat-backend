@@ -9,7 +9,6 @@ public class CreateTableController implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
         String username = ctx.pathParam("username");
-        ;
         if (P3TechChatApplication.messageService.createTable(username) == 1) {
             ctx.status(201);
         } else {
