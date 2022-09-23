@@ -14,7 +14,11 @@ import io.javalin.Javalin;
 public class P3TechChatApplication {
 	public static MessageService messageService = new MessageServiceImpl(new MessageDaoPostgres());
 	public static void main(String[] args) {
-		Javalin app = Javalin.create();
+		Javalin app = Javalin.create(config ->
+		{
+			config.enableDevLogging();
+			config.enableCorsForAllOrigins();
+		});
 
 		//controllers
 		DeleteMessagesByUsernameController deleteMessagesByUsernameController = new DeleteMessagesByUsernameController();
