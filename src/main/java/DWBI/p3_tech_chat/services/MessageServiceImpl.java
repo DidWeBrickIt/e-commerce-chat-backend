@@ -32,4 +32,9 @@ public class MessageServiceImpl implements MessageService {
     public void deleteMessagesByUsername(String name) {
         this.messageDao.deleteMessagesByUsername(name);
     }
+
+    @Override
+    public List<String> getAllTables() {
+        return this.messageDao.getAllTables();
+    }
 }

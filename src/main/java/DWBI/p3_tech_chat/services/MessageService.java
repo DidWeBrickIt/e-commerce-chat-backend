@@ -13,4 +13,6 @@ public interface MessageService {
     List<Message> getMessageByUsername (String username);
 
     void deleteMessagesByUsername(String username);
+
+    List<String> getAllTables();
 }

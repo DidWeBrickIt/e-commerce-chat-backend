@@ -13,4 +13,6 @@ public interface MessageDao {
     List<Message> getMessagesByUsername(String username);
 
     void deleteMessagesByUsername(String username);
+
+    public List<String> getAllTables();
 }

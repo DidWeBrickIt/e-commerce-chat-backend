@@ -90,10 +90,35 @@ public class MessageDaoPostgres implements MessageDao{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
 
+
+
             conn.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public List<String> getAllTables(){
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            List<String> tables = new ArrayList<>();
+            String sql = "SELECT *\n" +
+                    "FROM pg_catalog.pg_tables\n" +
+                    "WHERE schemaname != 'pg_catalog' AND \n" +
+                    "    schemaname != 'information_schema'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                tables.add(rs.getString(2));
+            }
+            return tables;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
     }
 }

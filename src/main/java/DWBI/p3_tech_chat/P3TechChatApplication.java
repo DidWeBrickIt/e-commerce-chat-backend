@@ -1,9 +1,6 @@
 package DWBI.p3_tech_chat;
 
-import DWBI.p3_tech_chat.controllers.CreateTableController;
-import DWBI.p3_tech_chat.controllers.DeleteMessagesByUsernameController;
-import DWBI.p3_tech_chat.controllers.GetMessagesByUsernameController;
-import DWBI.p3_tech_chat.controllers.PostMessageController;
+import DWBI.p3_tech_chat.controllers.*;
 import DWBI.p3_tech_chat.daos.MessageDaoPostgres;
 import DWBI.p3_tech_chat.services.MessageService;
 import DWBI.p3_tech_chat.services.MessageServiceImpl;
@@ -25,6 +22,7 @@ public class P3TechChatApplication {
 		CreateTableController createTableController = new CreateTableController();
 		GetMessagesByUsernameController getMessagesByUsernameController = new GetMessagesByUsernameController();
 		PostMessageController postMessageController = new PostMessageController();
+		GetAllTablesController getAllTablesController = new GetAllTablesController();
 
 
 		//call controllers
@@ -32,6 +30,7 @@ public class P3TechChatApplication {
 		app.post("/{name}", createTableController);
 		app.get("/{name}/retrieve", getMessagesByUsernameController);
 		app.post("/{name}/post", postMessageController);
+		app.get("/tables", getAllTablesController );
 
 
 		app.start();
