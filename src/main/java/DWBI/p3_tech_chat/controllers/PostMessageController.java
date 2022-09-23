@@ -12,12 +12,12 @@ public class PostMessageController implements Handler {
 
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
-        String username = ctx.pathParam("username");
+        String name = ctx.pathParam("name");
         String json = ctx.body();
         Gson gson = new Gson();
         Message message = gson.fromJson(json, Message.class);
         message.setMsgId(idMaker);
-        int result = P3TechChatApplication.messageService.postMessage(username,message);
+        int result = P3TechChatApplication.messageService.postMessage(name,message);
 
         idMaker++;
 

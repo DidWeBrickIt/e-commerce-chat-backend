@@ -8,8 +8,8 @@ import org.jetbrains.annotations.NotNull;
 public class CreateTableController implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
-        String username = ctx.pathParam("username");
-        if (P3TechChatApplication.messageService.createTable(username) == 1) {
+        String name = ctx.pathParam("name");
+        if (P3TechChatApplication.messageService.createTable(name) == 1) {
             ctx.status(201);
         } else {
             ctx.status(417);

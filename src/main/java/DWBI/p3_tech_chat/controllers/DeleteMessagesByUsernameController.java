@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class DeleteMessagesByUsernameController implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
-        String username =ctx.pathParam("username");
-        P3TechChatApplication.messageService.deleteMessagesByUsername(username);
+        String name =ctx.pathParam("name");
+        P3TechChatApplication.messageService.deleteMessagesByUsername(name);
     }
 }

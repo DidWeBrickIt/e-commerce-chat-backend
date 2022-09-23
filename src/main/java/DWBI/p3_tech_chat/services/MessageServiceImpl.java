@@ -14,22 +14,22 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int createTable(String username) {
-        return this.messageDao.createMessageTable(username);
+    public int createTable(String name) {
+        return this.messageDao.createMessageTable(name);
     }
 
     @Override
-    public int postMessage(String username, Message message) {
-        return this.messageDao.postMessage(username, message);
+    public int postMessage(String name, Message message) {
+        return this.messageDao.postMessage(name, message);
     }
 
     @Override
-    public List<Message> getMessageByUsername(String username) {
-        return this.messageDao.getMessagesByUsername(username);
+    public List<Message> getMessageByUsername(String name) {
+        return this.messageDao.getMessagesByUsername(name);
     }
 
     @Override
-    public void deleteMessagesByUsername(String username) {
-        this.messageDao.deleteMessagesByUsername(username);
+    public void deleteMessagesByUsername(String name) {
+        this.messageDao.deleteMessagesByUsername(name);
     }
 }
