@@ -16,7 +16,7 @@ public class MessageDaoPostgres implements MessageDao{
     public int createMessageTable(String name) {
         try (Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "create table " + name + " (message_id int primary key, username varchar not null, message varchar not null)";
+            String sql = "create table " + name + " (message_id int primary key, username varchar not null, message varchar not null); insert into " + name + " values (25, 'ADMIN', 'How can I help you today?')";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.execute();
